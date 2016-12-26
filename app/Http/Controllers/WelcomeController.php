@@ -7,7 +7,12 @@ use Hash;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\LRequest;
-
+use Stripe\Stripe;
+use Stripe\Charge;
+use Session;
+use Stripe\customer;
+use Stripe\Token;
+use App\Order;
 
 class WelcomeController extends Controller {
 
@@ -44,7 +49,6 @@ class WelcomeController extends Controller {
 	public function loaisanpham($id){
 		$product_cate=DB::table('products')->select('id','name','image','price','alias','cate_id')->where('cate_id',$id)->paginate(6);
 		$cate=DB::table('cates')->select('parent_ind')->where('id',$product_cate[0]->cate_id)->first();
-
 		$menu_cate =DB::table('cates')->select('id','name','alias')->where('parent_ind',$cate->parent_ind)->get();
 		$lasted_product=DB::table('products')->select('id','name','image','price','alias')->orderBy('id','DESC')->take(3)->get();
 		return view('user.pages.category',compact('product_cate','menu_cate','lasted_product','name_cate	'));
@@ -80,7 +84,9 @@ class WelcomeController extends Controller {
 		}
 	}
 	public function checkout(){
-		return view('user.pages.checkout');
+		$content=Cart::content();
+		$total=Cart::total();
+		return view('user.pages.checkout',compact('content','total'));
 	}
 	public function dangky(){
 		return view('user.pages.register');
@@ -109,8 +115,31 @@ class WelcomeController extends Controller {
 		return redirect()->route('user.pages.dangky');
 	}
 	public function profile(){
-		return view('user.pages.profile');
+		//$orders=DB::table('orders')->where('user_id',Auth::user()->id)->get();
+		//foreach($orders as $order){
+			//	$order->cart=unserialize($order->cart);
+		//	}
+		//return view('user.pages.profile',compact('orders'));
+		$data=User::find(Auth::user()->id);
+		return view('user.pages.profile',compact('data'));
 	}
+	public function postprofile(Request $request){
+		$user=User::find(Auth::user()->id);
+		if($request->input('txtPass')){
+			$this->validate($request,
+			[
+				'txtRePass'=>'same:txtPass'
+			],[
+				'txtRepass.same'=>'Nhập lại mật khẩu không đúng'
+			]);
+			$pass=$request->input('txtPass');
+			$user->password=Hash::make($pass);
+		}
+		$user->email=$request->txtEmail;
+		$user->remember_token=$request->input('remember_token');
+		$user->save();
+		return redirect()->route('profile')->with(['flash_level'=>'danger','flash_message'=>'Sửa thành công']);
+  }
 	public function postdangnhap(LRequest $request){
 			$login =[
 				'username'=>$request->txtUser,
@@ -125,5 +154,30 @@ class WelcomeController extends Controller {
 
 		public function getdangnhap(){
 			return view('user.login');
+		}
+		public function postcheckout(Request $request){
+				if(!Session::has('cart')){
+					return redirect()->route('giohang');
+				}
+				$cart =new Cart($oldCart);
+				$total=Cart::total();
+				Stripe::setApiKey('sk_test_skgC7MpIRHbahfjeOQ9Kjp8P');
+				try{
+					$charge = Charge::create(array(
+						"amount" => $total,
+   					"currency" => "usd",
+   					"source" => $request->input('stripeToken'), // obtained with Stripe.js,
+   					"metadata" => array("order_id" => "6735")
+					));
+					$order =new Order();
+					$order->Cart=serialize($cart);
+					$order->payment_id=$charge->id;
+					$order->user_id=Auth::user()->id;
+					$order->save();
+				}catch(\Exception $e){
+					return redirect()->route('checkout')->with('error',$e->getMessage());
+				}
+				Session::forget('cart');
+				return redirect()->route('home')->with('success','Mua Hàng Thành công');
 		}
 }
