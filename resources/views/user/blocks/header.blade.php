@@ -8,26 +8,26 @@
           <div class="navbar" id="topnav">
             <div class="navbar-inner">
               <ul class="nav-pills categorymenu" >
-                <li><a class="home active" href="{{ url('/') }}">Home</a>
+                <li><a class="home active" href="{{ url('/') }}">Trang chủ</a>
                 </li>
                 @if(Auth::check())
-                <li><a href="#" title="">{!! Auth::user()->username !!}</a>
+                <li><a href="{!! url('pro-file') !!}" title="">Xin chào {!! Auth::user()->username !!}</a>
                 </li>
-                @if(Auth::user()->level=1)
+                @if(Auth::user()->level != 2)
                 <li><a href="{!! url('admin/cate/list') !!}" title="">Quản lý</a>
                 </li>
                 @endif
                 <li><a href="{!! url('auth/logout') !!}" title="">Thoát</a>
                 </li>
                 @else
-                <li><a class="myaccount" href="{{ url('dang-nhap') }}">My Account</a>
+                <li><a class="myaccount" href="{{ url('dang-nhap') }}">Đăng nhập</a>
                 </li>
-                <li><a class="register" href="{{ url('dang-ki') }}">Register</a>
+                <li><a class="register" href="{{ url('dang-ki') }}">Đăng ký mới</a>
                 </li>
                 @endif
-                <li><a class="shoppingcart" href="{{ url('gio-hang') }}">Shopping Cart</a>
+                <li><a class="shoppingcart" href="{{ url('gio-hang') }}">Giỏ hàng</a>
                 </li>
-                <li><a class="checkout" href="{{ url('check-out') }}">CheckOut</a>
+                <li><a class="checkout" href="{{ url('check-out') }}">Thanh toán</a>
                 </li>
               </ul>
             </div>
@@ -43,6 +43,11 @@
     @if(Session::has('flash_message'))
     <div class="alert alert-danger">
       {!! Session::get('flash_message') !!}
+    </div>
+    @endif
+    @if(Session::has('success'))
+    <div class="alert alert-danger" id="charge-message">
+      {!! Session::get('success') !!}
     </div>
     @endif
   </div>

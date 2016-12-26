@@ -9,7 +9,7 @@
             t has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
         </div>
         <div class="span3 contact">
-          <h2>Contact Us </h2>
+          <h2>Liên hệ </h2>
           <ul>
             <li class="phone"> +123 456 7890, +123 456 7890</li>
             <li class="mobile"> +123 456 7890, +123 456 78900</li>

@@ -1,22 +1,22 @@
 <section class="container otherddetails">
   <div class="otherddetailspart">
     <div class="innerclass free">
-      <h2>Free shipping</h2>
-      All over in world over $200 </div>
+      <h2>Miễn phí giao hàng</h2>
+      nếu hóa đơn trên 1 triệu đô </div>
   </div>
   <div class="otherddetailspart">
     <div class="innerclass payment">
-      <h2>Easy Payment</h2>
-      Payment Gatway support </div>
+      <h2>Thanh toán đơn giản</h2>
+       </div>
   </div>
   <div class="otherddetailspart">
     <div class="innerclass shipping">
-      <h2>24hrs Shipping</h2>
-      Free For UK Customers </div>
+      <h2>Làm việc 24 giờ</h2>
+      Miễn phí hóa đơn cho khách ở Việt Nam </div>
   </div>
   <div class="otherddetailspart">
     <div class="innerclass choice">
-      <h2>Over 5000 Choice</h2>
-      50,000+ Products </div>
+      <h2>Hơn 5000 loại hàng</h2>
+      50000 sản phẩm </div>
   </div>
 </section>
