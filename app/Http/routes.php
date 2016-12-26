@@ -39,7 +39,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 			Route::get('delete/{id}',['as'=>'admin.product.getDelete','uses'=>'ProductController@getDelete']);
 			Route::get('edit/{id}',['as'=>'admin.product.getEdit','uses'=>'ProductController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.product.postEdit','uses'=>'ProductController@postEdit']);
-				Route::get('delimg/{id}',['as'=>'admin.product.getDelImg','uses'=>'ProductController@getDelImg']);
+			Route::get('delimg/{id}',['as'=>'admin.product.getDelImg','uses'=>'ProductController@getDelImg']);
 		});
 		Route::group(['prefix'=>'user'],function(){
 			Route::post('add',['as'=>'admin.user.postAdd','uses'=>'UserController@postAdd']);
@@ -59,9 +59,11 @@ Route::get('mua-hang/{id}/{tensanpham}',['as'=>'muahang','uses'=>'WelcomeControl
 Route::get('gio-hang',['as'=>'giohang','uses'=>'WelcomeController@giohang']);
 Route::get('xoa-san-pham/{id}',['as'=>'xoasanpham','uses'=>'WelcomeController@xoasanpham']);
 Route::get('cap-nhat/{id}/{qty}',['as'=>'capnhat','uses'=>'WelcomeController@capnhat']);
-Route::get('check-out',['as'=>'checkout','uses'=>'WelcomeController@checkout','middleware' => 'auth']);
 Route::get('dang-ki',['as'=>'dangky','uses'=>'WelcomeController@dangky']);
 Route::post('dang-ki',['as'=>'dangky','uses'=>'WelcomeController@postAdd']);
-Route::get('pro-file',['as'=>'profile','uses'=>'WelcomeController@profile']);
 Route::get('dang-nhap',['as'=>'getdangnhap','uses'=>'WelcomeController@getdangnhap']);
 Route::post('dang-nhap',['as'=>'postdangnhap','uses'=>'WelcomeController@postdangnhap']);
+Route::get('check-out',['as'=>'checkout','uses'=>'WelcomeController@checkout','middleware' => 'auth']);
+Route::post('check-out',['as'=>'checkout','uses'=>'WelcomeController@postcheckout','middleware' => 'auth']);
+Route::get('pro-file',['as'=>'profile','uses'=>'WelcomeController@profile']);
+Route::post('pro-file',['as'=>'profile','uses'=>'WelcomeController@postprofile']);
