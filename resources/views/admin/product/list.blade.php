@@ -5,8 +5,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Product
-                            <small>List</small>
+                        <h1 class="page-header">Sản phẩm
+                            <small>Danh sách</small>
                         </h1>
                     </div>
                     @include('admin.blocks.error')
@@ -22,12 +22,12 @@
                         <thead>
                             <tr align="center">
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Date</th>
-                                <th>Category</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Thêm vào</th>
+                                <th>Thuộc</th>
+                                <th>Xóa</th>
+                                <th>Sửa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,7 +35,7 @@
                             <tr class="odd gradeX" align="center">
                                 <td>1</td>
                                 <td>{!! $item["name"] !!}</td>
-                                <td>{!! number_format($item["price"],0,",",".") !!} VNĐ</td>
+                                <td>{!! number_format($item["price"],0,",",".") !!} USD</td>
                                 <td>
                                   {!!
                                    \Carbon\carbon::createFromTimeStamp(strtotime($item["created_at"]))->diffForHumans()

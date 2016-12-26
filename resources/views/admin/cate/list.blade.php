@@ -5,8 +5,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Category
-                            <small>List</small>
+                        <h1 class="page-header">Kho hàng
+                            <small>Danh sách</small>
                         </h1>
                     </div>
                     @include('admin.blocks.error')
@@ -22,10 +22,10 @@
                         <thead>
                             <tr align="center">
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Category Parent</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
+                                <th>Tên mặt hàng</th>
+                                <th>Thuộc về</th>
+                                <th>Xóa</th>
+                                <th>Sửa</th>
                             </tr>
                         </thead>
                         <tbody>

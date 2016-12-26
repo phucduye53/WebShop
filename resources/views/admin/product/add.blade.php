@@ -5,8 +5,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Product
-                            <small>Add</small>
+                        <h1 class="page-header">Sản phẩm
+                            <small>Thêm</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -30,51 +30,50 @@
                         <form action="{!! url('/admin/product/add') !!}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                                 <div class="form-group">
-                            <label>Category Parent</label>
+                            <label>Mặt hàng thuộc về</label>
                           <select class="form-control" name="sltParent">
-                              <option value="">Please Choose Category</option>
+                              <option value="">Chọn mặt hàng</option>
                               <?php cate_parent($cate,0,"--",old('sltParent')) ?>  ?>
                           </select>
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" name="txtName" placeholder="Please Enter Username" value="{!! old('txtName') !!}" />
+                                <label>Tên sản phẩm</label>
+                                <input class="form-control" name="txtName" placeholder="Hãy nhập tên sản phẩm" value="{!! old('txtName') !!}" />
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
-                                <input class="form-control" name="txtPrice" placeholder="Please Enter Password" value="{!! old('txtPrice') !!}" />
+                                <label>Giá ( USD )</label>
+                                <input class="form-control" name="txtPrice" placeholder="Hãy nhập giá" value="{!! old('txtPrice') !!}" />
                             </div>
                             <div class="form-group">
-                                <label>Intro</label>
+                                <label>Giới thiệu</label>
                                 <textarea class="form-control" rows="3" name="txtIntro">{!! old('txtIntro') !!}</textarea>
                                 <script type="text/javascript">ckeditor("txtIntro")</script>
                             </div>
                             <div class="form-group">
-                                <label>Content</label>
+                                <label>Chi tiết</label>
                                 <textarea class="form-control" rows="3" name="txtContent">{!! old('txtContent') !!}</textarea>
                                 <script type="text/javascript">ckeditor("txtContent")</script>
                             </div>
                             <div class="form-group">
-                                <label>Images</label>
+                                <label>Hình ảnh</label>
                                 <input type="file" name="fImages" value="{!! old('fImages') !!}" >
                             </div>
                             <div class="form-group">
-                                <label>Product Keywords</label>
-                                <input class="form-control" name="txtKeywords" placeholder="Please Enter Category Keywords"  value="{!! old('txtKeywords') !!}" />
+                                <label>Từ khóa</label>
+                                <input class="form-control" name="txtKeywords" placeholder="Nhập keywords"  value="{!! old('txtKeywords') !!}" />
                             </div>
                             <div class="form-group">
-                                <label>Product Description</label>
+                                <label>Mô tả</label>
                                 <textarea class="form-control" rows="3" name="txtDescription">{!! old('txtDescription') !!}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-default">Product Add</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                            <button type="submit" class="btn btn-default">Thêm sản phẩm</button>
 
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
                       @for($i=1;$i<=10;$i++)
                       <div class="form-group">
-                        <label>Image Product Detail{!! $i !!}</label>
+                        <label>Hình phụ cho sản phẩm{!! $i !!}</label>
                         <input type="file" name="fProductDetail[]"/>
                     </div>
                       @endfor

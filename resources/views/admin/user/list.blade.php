@@ -5,8 +5,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">User
-                            <small>List</small>
+                        <h1 class="page-header">Người dùng
+                            <small>Danh sách</small>
                         </h1>
                     </div>
                     @include('admin.blocks.error')
@@ -22,10 +22,10 @@
                         <thead>
                             <tr align="center">
                                 <th>ID</th>
-                                <th>Username</th>
-                                <th>Level</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
+                                <th>Tên tài khoản</th>
+                                <th>Quyền hạn</th>
+                                <th>Xóa</th>
+                                <th>Sửa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,8 +44,8 @@
                                     Member
                                     @endif
                                 </td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{!! URL::route('admin.user.getDelete',$item_user['id']) !!}" onclick="return xacnhanxoa('Ban có muốn xóa user không ?')"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{!! URL::route('admin.user.getEdit',$item_user['id']) !!}">Edit</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{!! URL::route('admin.user.getDelete',$item_user['id']) !!}" onclick="return xacnhanxoa('Ban có muốn xóa user không ?')"> Xóa</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{!! URL::route('admin.user.getEdit',$item_user['id']) !!}">Sửa</a></td>
                             </tr>
                             @endforeach()
                         </tbody>

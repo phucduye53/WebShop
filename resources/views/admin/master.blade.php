@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
-    <meta name="author" content="Vu Quoc Tuan">
-    <title>Admin - Khoa Phạm</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Admin - Khu quản lý </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{url('public/admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Admin Area - Khoa Phạm</a>
+                <a class="navbar-brand" href="index.html">Khu quản lý - admin</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -59,10 +59,8 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> {!! Auth::user()->username !!}</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
                         <li class="divider"></li>
-                        <li><a href="{!! url('auth/logout') !!}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{!! url('auth/logout') !!}"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -86,40 +84,40 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Tổng quan</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Kho Hàng <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ url('admin/cate/list') }}">List Category</a>
+                                    <a href="{{ url('admin/cate/list') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('admin/cate/add') }}">Add Category</a>
+                                    <a href="{{ url('admin/cate/add') }}">Thêm vào kho</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-cube fa-fw"></i> Sản phẩm<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ url('admin/product/list') }}">List Product</a>
+                                    <a href="{{ url('admin/product/list') }}">Kho sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('admin/product/add') }}">Add Product</a>
+                                    <a href="{{ url('admin/product/add') }}">Thêm vào kho</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Người dùng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ url('admin/user/list') }}">List User</a>
+                                    <a href="{{ url('admin/user/list') }}">Danh sách người dùng</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('admin/user/add') }}">Add User</a>
+                                    <a href="{{ url('admin/user/add') }}">Thêm người dùng</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

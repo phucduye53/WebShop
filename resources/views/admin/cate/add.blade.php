@@ -6,8 +6,8 @@
                       <div class="container-fluid">
                           <div class="row">
                               <div class="col-lg-12">
-                                  <h1 class="page-header">Category
-                                      <small>Add</small>
+                                  <h1 class="page-header">Kho
+                                      <small>Thêm</small>
                                   </h1>
                               </div>
                               <!-- /.col-lg-12 -->
@@ -25,33 +25,32 @@
                                   <form action="{!! route('admin.cate.postAdd') !!}" method="POST">
                                     <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                                       <div class="form-group" >
-                                          <label>Category Parent</label>
+                                          <label>Thuộc về mặt hàng</label>
                                           <select class="form-control" name="sltParent">
-                                              <option value="0">Please Choose Category</option>
+                                              <option value="0">Hãy chọn mặt hàng thuộc về</option>
                                               <?php cate_parent($parent); ?>
                                               ?>
                                           </select>
                                       </div>
                                       <div class="form-group">
-                                          <label>Category Name</label>
-                                          <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
+                                          <label>Tên mặt hàng</label>
+                                          <input class="form-control" name="txtCateName" placeholder="Nhập tên mặt hàng" />
                                       </div>
                                       <div class="form-group">
-                                          <label>Category Order</label>
-                                          <input class="form-control" name="txtOrder" placeholder="Please Enter Category Order" />
+                                          <label>Tag</label>
+                                          <input class="form-control" name="txtOrder" placeholder="Nhập tag" />
                                       </div>
                                       <div class="form-group">
-                                          <label>Category Keywords</label>
-                                          <input class="form-control" name="txtKeyword" placeholder="Please Enter Category Keywords" />
+                                          <label>Từ khóa</label>
+                                          <input class="form-control" name="txtKeyword" placeholder="Nhập từ khóa" />
                                       </div>
                                       <div class="form-group">
-                                          <label>Category Description</label>
+                                          <label>Mô tả</label>
                                           <textarea class="form-control" rows="3" name="txtDescription"  ></textarea>
                                       </div>
                                       <div class="form-group">
 
-                                      <button type="submit" class="btn btn-default">Category Add</button>
-                                      <button type="reset" class="btn btn-default">Reset</button>
+                                      <button type="submit" class="btn btn-default">Thêm mặt hàng</button>
                                   <form>
                               </div>
                           </div>
