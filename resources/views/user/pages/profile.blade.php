@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('description','Đây là trang chủ')
+@section('description','Simple Shop - Online Shopping')
 @section('content')
 <div class="span9">
   <h1 class="heading1"><span class="maintext">Register Account</span><span class="subtext">Register Your details with us</span></h1>
@@ -11,13 +11,13 @@
         <div class="control-group">
           <label class="control-label"><span class="red">*</span> Tài khoản:</label>
           <div class="controls">
-            <input type="text"  class="input-xlarge" name="txtUser" id="username">
+            <input type="text"  class="input-xlarge" name="txtUser" id="username" value="{!! $data['username'] !!}" disabled="">
           </div>
         </div>
         <div class="control-group">
           <label class="control-label"><span class="red">*</span> Email:</label>
           <div class="controls">
-            <input type="text"  class="input-xlarge" name="txtEmail" id="email" >
+            <input type="text"  class="input-xlarge" name="txtEmail" id="email" value="{!! $data['email'] !!}">
           </div>
         </div>
       </fieldset>

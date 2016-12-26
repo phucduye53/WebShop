@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('description','Đây là trang chủ')
+@section('description','Simple Shop - Online Shopping')
 @section('content')
 <div id="maincontainer">
   <section id="product">
@@ -47,31 +47,25 @@
                   <span class="spiral"></span>{!! $product_detail->price !!}</div>
               </div>
               <ul class="productpagecart">
-                <li><a class="cart" href="#">Add to Cart</a>
+                <li><a class="cart" href="{!! url('mua-hang',[$product_detail->id,$product_detail->alias]) !!}">Thêm vào giỏ</a>
                 </li>
               </ul>
          <!-- Product Description tab & comments-->
          <div class="productdesc">
                 <ul class="nav nav-tabs" id="myTab">
-                  <li class="active"><a href="#description">Description</a>
+                  <li class="active"><a href="#description">Chi tiết</a>
                   </li>
-                  <li><a href="#specification">Specification</a>
+                  <li><a href="#specification">Đặc điểm</a>
                   </li>
-                  <li><a href="#review">Review</a>
+                  <li><a href="#review">Nhận xét</a>
                   </li>
                   <li><a href="#producttag">Tags</a>
                   </li>
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane active" id="description">
-                    <h2>h2 tag will be appear</h2>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum <br>
-                    <br>
                     <ul class="listoption3">
-                      <li>Lorem ipsum dolor sit amet Consectetur adipiscing elit</li>
-                      <li>Integer molestie lorem at massa Facilisis in pretium nisl aliquet</li>
-                      <li>Nulla volutpat aliquam velit </li>
-                      <li>Faucibus porta lacus fringilla vel Aenean sit amet erat nunc Eget porttitor lorem</li>
+                      {!! $product_detail->description !!}
                     </ul>
                   </div>
                   <div class="tab-pane " id="specification">
@@ -163,7 +157,7 @@
           <a class="prdocutname" href="product.html">{!! $item_product_cate->name !!}</a>
           <div class="thumbnail">
             <span class="sale tooltip-test">Sale</span>
-            <a href="#"><img alt="" src="img/product1.jpg"></a>
+            <a href=href="{!! url('mua-hang',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img alt="" src="img/product1.jpg"></a>
             <div class="pricetag">
               <span class="spiral"></span><a href="{!! asset('resources/upload/'.$item_product_cate->image) !!}" class="productcart">ADD TO CART</a>
               <div class="price">

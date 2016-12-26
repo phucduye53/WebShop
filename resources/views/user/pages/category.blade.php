@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('description','Đây là trang chủ')
+@section('description','Simple Shop - Online Shopping')
 @section('content')
         <!-- Category-->
         <div id="maincontainer">
@@ -8,17 +8,17 @@
              <!--  breadcrumb -->
               <ul class="breadcrumb">
                 <li>
-                  <a href="{{ url('/') }}">Home</a>
+                  <a href="{{ url('/') }}">Trang chủ</a>
                   <span class="divider">/</span>
                 </li>
-                <li class="active">Category</li>
+                <li class="active">Phân loại</li>
               </ul>
               <div class="row">
                 <!-- Sidebar Start-->
                 <aside class="span3">
                  <!-- Category-->
                   <div class="sidewidt">
-                    <h2 class="heading2"><span>Categories</span></h2>
+                    <h2 class="heading2"><span>Phân loại</span></h2>
                     <ul class="nav nav-list categories">
                       @foreach($menu_cate as $item_cate)
                       <li>
@@ -71,6 +71,7 @@
                             </li>
                             @endforeach
                           </ul>
+                          <form>
                           <div class="pagination pull-right">
                             <ul>
                               @if($product_cate->currentPage() != 1)

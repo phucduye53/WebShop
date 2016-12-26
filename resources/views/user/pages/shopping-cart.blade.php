@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('description','Đây là trang chủ')
+@section('description','Simple Shop - Online Shopping')
 @section('content')
 
 <div id="maincontainer">
@@ -8,22 +8,22 @@
      <!--  breadcrumb -->
       <ul class="breadcrumb">
         <li>
-          <a href="{{ url('/') }}">Home</a>
+          <a href="{{ url('/') }}">Trang chủ</a>
           <span class="divider">/</span>
         </li>
-        <li class="active"> Shopping Cart</li>
+        <li class="active"> Giỏ hàng</li>
       </ul>
-      <h1 class="heading1"><span class="maintext"> Shopping Cart</span><span class="subtext"> All items in your  Shopping Cart</span></h1>
+      <h1 class="heading1"><span class="maintext">Giỏ hàng</span><span class="subtext"> Tất cả sản phẩm có trong giỏ</span></h1>
       <!-- Cart-->
       <div class="cart-info">
         <table class="table table-striped table-bordered">
           <tr>
-            <th class="image">Image</th>
-            <th class="name">Product Name</th>
-            <th class="quantity">Qty</th>
-              <th class="total">Action</th>
-            <th class="price">Unit Price</th>
-            <th class="total">Total</th>
+            <th class="image">Hình ảnh</th>
+            <th class="name">Tên sản phẩm</th>
+            <th class="quantity">Số Lượng</th>
+              <th class="total">Tùy chỉnh</th>
+            <th class="price">Đơn giá</th>
+            <th class="total">Tổng</th>
 
           </tr>
           <form method="POST" action"">
@@ -56,12 +56,12 @@
           <div class="span4 pull-right">
             <table class="table table-striped table-bordered ">
               <tr>
-                <td><span class="extra bold totalamout">Total :</span></td>
+                <td><span class="extra bold totalamout">Tổng tiền :</span></td>
                 <td><span class="bold totalamout">{!! number_format($total,0,",",".") !!}</span></td>
               </tr>
             </table>
-            <a href="{{ url('check-out') }}"type="button"  class="btn btn-orange pull-right">Checkout</a>
-            <a href="{{ url('/') }}" type="button" class="btn btn-orange pull-right mr10">Continue Shopping </a>
+            <a href="{{ url('check-out') }}"type="button"  class="btn btn-orange pull-right">Thanh toán</a>
+            <a href="{{ url('/') }}" type="button" class="btn btn-orange pull-right mr10">Tiếp tục mua hàng </a>
           </div>
         </div>
         </div>

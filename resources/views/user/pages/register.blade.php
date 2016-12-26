@@ -1,11 +1,11 @@
 @extends('user.master')
-@section('description','Đây là trang chủ')
+@section('description','Simple Shop - Online Shopping')
 @section('content')
 <div class="span9">
-  <h1 class="heading1"><span class="maintext">Register Account</span><span class="subtext">Register Your details with us</span></h1>
+  <h1 class="heading1"><span class="maintext">Tài khoản của bạn</span><span class="subtext">Cập nhật thông tin</span></h1>
   <form action="" method="POST" class="form-horizontal">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
-    <h3 class="heading3">Your Personal Details</h3>
+    <h3 class="heading3">Thông tin cá nhân</h3>
     <div class="registerbox">
       <fieldset>
         <div class="control-group">
@@ -22,7 +22,7 @@
         </div>
       </fieldset>
     </div>
-    <h3 class="heading3">Your Password</h3>
+    <h3 class="heading3">Mật khẩu của bạn</h3>
     <div class="registerbox">
       <fieldset>
         <div class="control-group">
