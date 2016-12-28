@@ -23,7 +23,6 @@ class CateController extends Controller {
     $cate->description=$request->txtDescription;
     $cate->save();
     return redirect()->route('admin.cate.list')->with(['flash_message'=>'Thêm thành công']);
-
   }
   public function getList(){
 		$data=Cate::select('id','name','parent_ind')->orderBy('id','DESC')->get()->toArray();
