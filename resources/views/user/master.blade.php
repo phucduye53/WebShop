@@ -14,6 +14,7 @@
 <link href="{!! url('public/user/css/flexslider.css') !!}" type="text/css" media="screen" rel="stylesheet"  />
 <link href="{!! url('public/user/css/jquery.fancybox.css') !!}" rel="stylesheet">
 <link href="{!! url('public/user/css/cloud-zoom.css') !!}" rel="stylesheet">
+<link href="{!! url('public/user/css/searchbar.css') !!}" rel='stylesheet' type='text/css'>
 
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
