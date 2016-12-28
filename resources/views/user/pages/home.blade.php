@@ -3,7 +3,7 @@
 @section('content')
 <section id="featured" class="row mt40">
   <div class="container">
-    <h1 class="heading1"><span class="maintext">Featured Products</span><span class="subtext"> See Our Most featured Products</span></h1>
+    <h1 class="heading1"><span class="maintext">Hàng nổi bật</span><span class="subtext">Những hàng nổi bật gần đây</span></h1>
     <ul class="thumbnails">
       @foreach($product as $item)
       <li class="span3">
@@ -28,7 +28,7 @@
 <!-- Latest Product-->
 <section id="latest" class="row">
   <div class="container">
-    <h1 class="heading1"><span class="maintext">Latest Products</span><span class="subtext"> See Our  Latest Products</span></h1>
+    <h1 class="heading1"><span class="maintext">Hàng bán chạy</span><span class="subtext"> Hàng bán chạy</span></h1>
     <ul class="thumbnails">
       @foreach($product as $item)
       <li class="span3">
