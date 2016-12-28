@@ -178,6 +178,6 @@ class WelcomeController extends Controller {
 					return redirect()->route('checkout')->with('error',$e->getMessage());
 				}
 				Session::forget('cart');
-				return redirect()->route('home')->with('success','Mua Hàng Thành công');
+				return redirect()->route('/')->with('success','Mua Hàng Thành công');
 		}
 }
