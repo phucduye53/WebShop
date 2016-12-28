@@ -22,8 +22,8 @@
                       <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                     <div class="form-group">
                         <label>Mặt hàng thuộc về</label>
-                        <select class="form-control">
-                            <option value="0" name=sltParent >Hãy chọn mặt hàng thuộc về</option>
+                        <select class="form-control" name=sltParent>
+                            <option value="0"  >Hãy chọn mặt hàng thuộc về</option>
                             <?php cate_parent($parent,0,"--",$data["parent_ind"]) ?>
                         </select>
                     </div>
