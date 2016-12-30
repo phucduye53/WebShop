@@ -32,17 +32,13 @@
           <tr>
             <td class="image"><a href="#"><img title="product" alt="product" src="{!! asset('resources/upload/'.$item['options']['img']) !!}" height="50" width="50"></a></td>
             <td  class="name"><a href="#">{!! $item["name"] !!}</a></td>
-            <td class="quantity"><input class="span1 qty" type="text" size="1" value='{!! $item["qty"] !!}' name="quantity[40]" ></td>
-
+            <td class="quantity"><input class="span1 qty" type="text" size="1" value='{!! $item["qty"] !!}' name="quantity[40]" /></td>
              <td class="total">
                <a href="#" class="updatecart" id="{!! $item['rowid'] !!}"><img class="tooltip-test" data-original-title="Update" src="{!! asset('public/user/img/update.png') !!}" alt="" ></a>
               <a href="{!! url('xoa-san-pham',['id'=>$item['rowid']]) !!}"><img class="tooltip-test" data-original-title="Remove"  src="{!! asset('public/user/img/remove.png') !!}" alt=""></a>
             </td>
-
-
             <td class="price">{!! number_format($item["price"],0,",",".") !!}</td>
             <td class="total">{!! number_format($item["price"]*$item["qty"],0,",",".") !!}</td>
-
           </tr>
           @endforeach
         </form>
