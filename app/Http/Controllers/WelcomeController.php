@@ -104,7 +104,7 @@ class WelcomeController extends Controller {
 					'txtRePass.same'=>'Mật khẩu nhập lại không đúng',
 					'txtEmail.required'=>'Chưa nhập Email',
 					'txtEmail.regex'=>'Email nhập chưa đúng']);
-		$user =new User([
+		$user=new User([
 			'username'=>$request->input('txtUser'),
 			'password'=>hash::make($request->input('txtPass')),
 			'email'=>$request->input('txtEmail'),
@@ -170,14 +170,19 @@ class WelcomeController extends Controller {
    					"metadata" => array("order_id" => "6735")
 					));
 					$order =new Order();
-					$order->Cart=serialize($cart);
 					$order->payment_id=$charge->id;
 					$order->user_id=Auth::user()->id;
+					$order->total=Cart::total();
 					$order->save();
 				}catch(\Exception $e){
 					return redirect()->route('checkout')->with('error',$e->getMessage());
 				}
 				Session::forget('cart');
-				return redirect()->route('/')->with('success','Mua Hàng Thành công');
+				return redirect()->route('giohang')->with(['flash_level'=>'danger','flash_message'=>'Mua thành công']);
+		}
+		public function search(Request $request){
+				$data=$request->input('search');
+				$product_cate= DB::table('products')->where('name','like','%'.$data.'%')->paginate(6);
+				return view('user.pages.search',compact('product_cate'));
 		}
 }
