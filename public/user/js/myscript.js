@@ -9,17 +9,16 @@ $(document).ready(function(){
       cache:false,
       data:{"_token":token,"id":rowid,"qty":qty},
       success:function(data){
-        if(data=="oke"){
-          window.location= "gio-hang"
+        if(data == "oke"){
+          window.location="gio-hang"
         }
       }
     });
   });
 });
 
-$(function () {
-function closeSearch() {
-        var $form = $('.navbar-collapse form[role="search"].active')
+$(function () {function closeSearch() {
+    var $form = $('.navbar-collapse form[role="search"].active')
     $form.find('input').val('');
   $form.removeClass('active');
 }
@@ -39,6 +38,6 @@ $(document).on('click', '.navbar-collapse form[role="search"].active button[type
   var $form = $(this).closest('form'),
     $input = $form.find('input');
   $('#showSearchTerm').text($input.val());
-        closeSearch()
-});
+        closeSearch();
+      });
 });
