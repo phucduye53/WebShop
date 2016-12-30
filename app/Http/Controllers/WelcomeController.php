@@ -112,7 +112,7 @@ class WelcomeController extends Controller {
 			'remember_token'=>$request->input('_token')
 		]);
 		$user->save();
-		return redirect()->route('user.pages.dangky');
+		return redirect()->route('index')->with(['flash_level'=>'danger','flash_message'=>'Tên đăng nhập đã tồn tại']);
 	}
 	public function profile(){
 		//$orders=DB::table('orders')->where('user_id',Auth::user()->id)->get();
