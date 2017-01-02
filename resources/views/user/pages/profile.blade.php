@@ -25,14 +25,26 @@
     <h3 class="heading3">Your Password</h3>
     <div class="registerbox">
       <fieldset>
+        <div class="control-group" hidden>
+          <label  class="control-label"><span class="red">*</span> Mật khẩu cũ : </label>
+          <div class="controls">
+            <input type="password"  class="input-xlarge" name="txtReOldPass" id="password" value="{!! $data['password'] !!}">
+          </div>
+        </div>
         <div class="control-group">
-          <label  class="control-label"><span class="red">*</span> Mật khẩu:</label>
+          <label  class="control-label"><span class="red">*</span> Mật khẩu cũ : </label>
+          <div class="controls">
+            <input type="password"  class="input-xlarge" name="txtOldPass" id="password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label  class="control-label"><span class="red">*</span> Mật khẩu mới</label>
           <div class="controls">
             <input type="password"  class="input-xlarge" name="txtPass" id="password">
           </div>
         </div>
         <div class="control-group">
-          <label  class="control-label"><span class="red">*</span> Nhập lại mật khẩu::</label>
+          <label  class="control-label"><span class="red">*</span> Nhập lại mật khẩu :</label>
           <div class="controls">
             <input type="password"  class="input-xlarge" name="txtRePass" id="rpassword">
           </div>

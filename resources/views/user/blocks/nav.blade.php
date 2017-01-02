@@ -19,13 +19,13 @@
         </div>
       </li>
       @endforeach()
-      <form class="navbar-form" role="search" style="float: right;">
+      <form action="{!! route('timkiem') !!}" class="navbar-form" role="search" style="float: right;">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search...">
+          <input name="search" type="text" class="form-control" placeholder="Tìm kiếm...">
           <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
+            <button type="submit" class="btn btn-default" >
               <span class="glyphicon glyphicon-search">
-                <span class="sr-only">Search...</span>
+                <span class="sr-only">Tìm kiếm...</span>
               </span>
             </button>
           </span>

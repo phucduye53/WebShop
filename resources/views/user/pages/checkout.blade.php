@@ -72,7 +72,6 @@
                   <td class="quantity"><input type="text" size="1" value='{!! $item["qty"] !!}' name="quantity[40]" class="span1" readonly>
                     <td class="price">{!! number_format($item["price"],0,",",".") !!}</td>
                     <td class="total">{!! number_format($item["price"]*$item["qty"],0,",",".") !!}</td>
-
                 </tr>
                   @endforeach()
               </table>

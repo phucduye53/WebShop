@@ -29,7 +29,13 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
               <div class="col-md-12">
-              @include('admin.blocks.error')
+                <div class="col-lg-12">
+                  @if(Session::has('flash_message'))
+                  <div class="alert alert-danger">
+                    {!! Session::get('flash_message') !!}
+                  </div>
+                  @endif
+                </div>
             </div>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
