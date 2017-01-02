@@ -48,7 +48,7 @@ class AuthController extends Controller {
 		if($this->auth->attempt($login)){
 			return redirect()->route('admin.cate.list');
 		}else{
-			return redirect()->back();
+			return redirect()->back()->with(['flash_level'=>'danger','flash_message'=>'Tài khoản hoặc mật khẩu không đúng']);
 		}
 	}
 
