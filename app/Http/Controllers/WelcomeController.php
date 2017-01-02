@@ -180,7 +180,11 @@ class WelcomeController extends Controller {
 					return redirect()->route('checkout')->with('error',$e->getMessage());
 				}
 				Session::forget('cart');
+<<<<<<< HEAD
 				return redirect()->route('index')->with(['flash_level'=>'danger','flash_message'=>'Mua thành công']);
+=======
+				return redirect()->route('giohang')->with(['flash_level'=>'danger','flash_message'=>'Mua thành công']);
+>>>>>>> b214af9f1b0f65670401ec65aadb8e1ed0d97ff9
 		}
 		public function search(Request $request){
 				$data=$request->input('search');
