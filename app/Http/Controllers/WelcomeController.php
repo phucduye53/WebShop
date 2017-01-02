@@ -104,7 +104,7 @@ class WelcomeController extends Controller {
 					'txtRePass.same'=>'Mật khẩu nhập lại không đúng',
 					'txtEmail.required'=>'Chưa nhập Email',
 					'txtEmail.regex'=>'Email nhập chưa đúng']);
-		$user =new User([
+		$user=new User([
 			'username'=>$request->input('txtUser'),
 			'password'=>hash::make($request->input('txtPass')),
 			'email'=>$request->input('txtEmail'),
@@ -112,7 +112,7 @@ class WelcomeController extends Controller {
 			'remember_token'=>$request->input('_token')
 		]);
 		$user->save();
-		return redirect()->route('user.pages.dangky');
+		return redirect()->route('index');
 	}
 	public function profile(){
 		//$orders=DB::table('orders')->where('user_id',Auth::user()->id)->get();
@@ -125,20 +125,22 @@ class WelcomeController extends Controller {
 	}
 	public function postprofile(Request $request){
 		$user=User::find(Auth::user()->id);
-		if($request->input('txtPass')){
-			$this->validate($request,
-			[
+		$this->validate($request,[
 				'txtRePass'=>'same:txtPass'
 			],[
 				'txtRepass.same'=>'Nhập lại mật khẩu không đúng'
 			]);
-			$pass=$request->input('txtPass');
-			$user->password=Hash::make($pass);
-		}
-		$user->email=$request->txtEmail;
-		$user->remember_token=$request->input('remember_token');
-		$user->save();
-		return redirect()->route('profile')->with(['flash_level'=>'danger','flash_message'=>'Sửa thành công']);
+			if(!Hash::check($request->input('txtOldPass'),$request->input('txtReOldPass')))
+			{
+				return redirect()->route('profile')->with(['flash_level'=>'danger','flash_message'=>'Mật khẩu cũ không đúng']);
+			}else{
+				$pass=$request->input('txtPass');
+				$user->password=Hash::make($pass);
+				$user->email=$request->txtEmail;
+				$user->remember_token=$request->input('remember_token');
+				$user->save();
+				return redirect()->route('profile')->with(['flash_level'=>'danger','flash_message'=>'Sửa thành công']);
+				}
   }
 	public function postdangnhap(LRequest $request){
 			$login =[
@@ -170,14 +172,19 @@ class WelcomeController extends Controller {
    					"metadata" => array("order_id" => "6735")
 					));
 					$order =new Order();
-					$order->Cart=serialize($cart);
 					$order->payment_id=$charge->id;
 					$order->user_id=Auth::user()->id;
+					$order->total=Cart::total();
 					$order->save();
 				}catch(\Exception $e){
 					return redirect()->route('checkout')->with('error',$e->getMessage());
 				}
 				Session::forget('cart');
-				return redirect()->route('/')->with('success','Mua Hàng Thành công');
+				return redirect()->route('index')->with(['flash_level'=>'danger','flash_message'=>'Mua thành công']);
+		}
+		public function search(Request $request){
+				$data=$request->input('search');
+				$product_cate= DB::table('products')->where('name','like','%'.$data.'%')->paginate(6);
+				return view('user.pages.search',compact('product_cate'));
 		}
 }
