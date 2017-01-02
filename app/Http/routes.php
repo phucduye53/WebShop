@@ -49,6 +49,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 			Route::get('edit/{id}',['as'=>'admin.user.getEdit','uses'=>'UserController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
 		});
+		Route::group(['prefix'=>'order'],function(){
+			Route::get('list',['as'=>'admin.order.list','uses'=>'OrderController@getList']);
+		});
 	});
 
 
@@ -67,3 +70,4 @@ Route::get('check-out',['as'=>'checkout','uses'=>'WelcomeController@checkout','m
 Route::post('check-out',['as'=>'checkout','uses'=>'WelcomeController@postcheckout','middleware' => 'auth']);
 Route::get('pro-file',['as'=>'profile','uses'=>'WelcomeController@profile']);
 Route::post('pro-file',['as'=>'profile','uses'=>'WelcomeController@postprofile']);
+Route::get('tim-kiem',['as'=>'timkiem','uses'=>'WelcomeController@search']);

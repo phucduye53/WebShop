@@ -150,7 +150,7 @@ class WelcomeController extends Controller {
 			if(auth::attempt($login)){
 				return redirect()->route('checkout');
 			}else{
-				return redirect()->back();
+				return redirect()->back()->with(['flash_level'=>'danger','flash_message'=>'Tài khoản hoặc mật khẩu không đúng']);
 			}
 		}
 
