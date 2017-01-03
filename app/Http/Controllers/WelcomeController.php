@@ -13,6 +13,7 @@ use Session;
 use Stripe\customer;
 use Stripe\Token;
 use App\Order;
+use App\Review;
 
 class WelcomeController extends Controller {
 
@@ -51,20 +52,25 @@ class WelcomeController extends Controller {
 		$cate=DB::table('cates')->select('parent_ind')->where('id',$product_cate[0]->cate_id)->first();
 		$menu_cate =DB::table('cates')->select('id','name','alias')->where('parent_ind',$cate->parent_ind)->get();
 		$lasted_product=DB::table('products')->select('id','name','image','price','alias')->orderBy('id','DESC')->take(3)->get();
-		return view('user.pages.category',compact('product_cate','menu_cate','lasted_product','name_cate	'));
+		return view('user.pages.category',compact('product_cate','menu_cate','lasted_product','name_cate'));
 	}
 	public function chitietsanpham($id){
 		$product_detail =DB::table('products')->where('id',$id)->first();
 		$images = DB::table('product_images')->select('id','image')->where('product_id',$product_detail->id)->get();
 		$product_cate=DB::table('products')->where('cate_id',$product_detail->cate_id)->where('id','<>',$id)->take(4)->get();
-		return view('user.pages.product',compact('product_detail','images','product_cate'));
+		$product_review=DB::table('reviews')->where('id_product',$product_detail->id)->paginate(1);
+		if($product_review==null)
+		{
+					return view('user.pages.product',compact('product_detail','images','product_cate'));
+		}else{
+					return view('user.pages.product',compact('product_detail','images','product_cate','product_review'));
+		}
 	}
 	public function muahang($id){
 		$product_buy =DB::table('products')->where('id',$id)->first();
 		Cart::add(array('id'=>$id,'name'=>$product_buy->name,'qty'=>1,'price'=>$product_buy->price,'options'=>array('img'=>$product_buy->image)));
 		$content=Cart::content();
 		return redirect()->route('giohang');
-
 	}
 	public function giohang(){
 		$content=Cart::content();
@@ -180,15 +186,26 @@ class WelcomeController extends Controller {
 					return redirect()->route('checkout')->with('error',$e->getMessage());
 				}
 				Session::forget('cart');
-<<<<<<< HEAD
 				return redirect()->route('index')->with(['flash_level'=>'danger','flash_message'=>'Mua thành công']);
-=======
-				return redirect()->route('giohang')->with(['flash_level'=>'danger','flash_message'=>'Mua thành công']);
->>>>>>> b214af9f1b0f65670401ec65aadb8e1ed0d97ff9
 		}
 		public function search(Request $request){
 				$data=$request->input('search');
 				$product_cate= DB::table('products')->where('name','like','%'.$data.'%')->paginate(6);
 				return view('user.pages.search',compact('product_cate'));
+		}
+		public function addReview(Request $request){
+			$this->validate($request,[
+					'username'=>'required',
+					'text'=>'required'
+				],[
+					'username.required'=>'Chưa nhập tên người dùng',
+					'text.required'=>'Chưa nhập bình luận',
+				]);
+				$review = new Review();
+				$review->id_product=$request->id;
+				$review->text=$request->text;
+				$review->username=$request->username;
+				$review->save();
+				return redirect()->back()->with(['flash_level'=>'danger','flash_message'=>'Thêm bình luận thành công']);
 		}
 }
