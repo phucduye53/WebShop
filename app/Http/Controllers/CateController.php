@@ -43,7 +43,6 @@ class CateController extends Controller {
 						echo route('admin.cate.list');
 				echo"'
 				</script>";
-
 			}
 	}
 	public function getEdit($id){
