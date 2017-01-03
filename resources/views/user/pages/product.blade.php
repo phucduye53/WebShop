@@ -55,11 +55,9 @@
                 <ul class="nav nav-tabs" id="myTab">
                   <li class="active"><a href="#description">Chi tiết</a>
                   </li>
-                  <li><a href="#specification">Đặc điểm</a>
+                  <li><a href="#review">Viết nhận xét</a>
                   </li>
-                  <li><a href="#review">Nhận xét</a>
-                  </li>
-                  <li><a href="#producttag">Tags</a>
+                  <li><a href="#producttag">Nhận xét</a>
                   </li>
                 </ul>
                 <div class="tab-content">
@@ -68,75 +66,83 @@
                       {!! $product_detail->description !!}
                     </ul>
                   </div>
-                  <div class="tab-pane " id="specification">
-                    <ul class="productinfo">
-                      <li>
-                        <span class="productinfoleft"> Product Code:</span> Product 16 </li>
-                      <li>
-                        <span class="productinfoleft"> Reward Points:</span> 60 </li>
-                      <li>
-                        <span class="productinfoleft"> Availability: </span> In Stock </li>
-                      <li>
-                        <span class="productinfoleft"> Old Price: </span> $500.00 </li>
-                      <li>
-                        <span class="productinfoleft"> Ex Tax: </span> $500.00 </li>
-                      <li>
-                        <span class="productinfoleft"> Ex Tax: </span> $500.00 </li>
-                      <li>
-                        <span class="productinfoleft"> Product Code:</span> Product 16 </li>
-                      <li>
-                        <span class="productinfoleft"> Reward Points:</span> 60 </li>
-                    </ul>
-                  </div>
                   <div class="tab-pane" id="review">
-                    <h3>Write a Review</h3>
-                    <form class="form-vertical">
+                    <h3>Thêm nhận xét</h3>
+                    <form action="{!! route('review') !!}" method="POST" class="form-horizontal">
+                      <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                       <fieldset>
                         <div class="control-group">
-                          <label class="control-label">Text input</label>
+                          <label class="control-label">Tên người dùng</label>
                           <div class="controls">
-                            <input type="text" class="span3">
+                            @if(Auth::check())
+                            <input type="text"  name="username" value="{!! Auth::user()->username !!}" readonly>
+                            @else
+                            <input type="text"  name="username" >
+                            @endif
                           </div>
                         </div>
                         <div class="control-group">
-                          <label class="control-label">Textarea</label>
+                          <label class="control-label">Nhật xét</label>
                           <div class="controls">
-                            <textarea rows="3"  class="span3"></textarea>
+                            <input type="text" style="height:50px;" name="text">
+                          </div>
+                          <div class="controls" hidden>
+                            <input type="text" style="height:50px;" name="id" value="{!! $product_detail->id !!}">
                           </div>
                         </div>
                       </fieldset>
-                      <input type="submit" class="btn btn-orange" value="continue">
+                      <input type="submit" class="btn btn-orange" value="Thêm">
                     </form>
                   </div>
                   <div class="tab-pane" id="producttag">
-                    <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum <br>
-                      <br>
-                    </p>
-                    <ul class="tags">
-                      <li><a href="#"><i class="icon-tag"></i> Webdesign</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> html</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> html</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> css</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> jquery</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> css</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> jquery</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> Webdesign</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> css</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> jquery</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> Webdesign</a>
-                      </li>
-                      <li><a href="#"><i class="icon-tag"></i> html</a>
-                      </li>
+                    @foreach($product_review as $review)
+                      <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <div class="panel panel-white post panel-shadow">
+                              <div class="post-heading">
+                                <div class="pull-left image">
+                                  <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                                </div>
+                                <div class="pull-left meta">
+                                  <div class="title h5">
+                                    <a href="#"><b>{!! $review->username !!}</b></a>
+                                    đã nhận xét
+                                  </div>
+                                  <h6 class="text-muted time">
+                                    {!!
+                                     $review->created_at
+                                  !!}
+                                  </h6>
+                                    <p>
+                                      {!! $review->text !!}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="post-description">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      @endforeach
+                      <div class="pagination pull-right">
+                        <ul>
+                          @if($product_review->currentPage() != 1)
+                          <li><a href="{!! str_replace('/?','?',$product_review->url($product_review->currentPage()-1)) !!}">Prev</a></li>
+                          @endif
+                          @for ($i=1;$i<=$product_review->lastPage();$i=$i+1)
+                          <li class="{!! ($product_review->currentPage()==$i )?'active' : '' !!}">
+                            <a href="{!! str_replace('/?','?',$product_review->url($i)) !!}">{!! $i !!}</a>
+                          </li>
+                          @endfor
+                          @if($product_review->currentPage() != $product_review->lastPage())
+                          <li><a href="{!! str_replace('/?','?',$product_review->url($product_review->currentPage()+1)) !!}">Next</a>
+                            @endif
+                          </li>
+                        </ul>
+                      </div>
                     </ul>
                   </div>
                 </div>
