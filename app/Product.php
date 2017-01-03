@@ -17,4 +17,7 @@ class Product extends Model {
     public function pimage() {
       return $this->hasMany('App\ProductImages');
     }
+		public function review(){
+			return $this->hasMany('App\Reviews');
+		}
 }
