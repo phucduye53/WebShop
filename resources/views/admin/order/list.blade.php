@@ -51,7 +51,6 @@
                                    \Carbon\carbon::createFromTimeStamp(strtotime($item["created_at"]))->diffForHumans()
                                 !!}
                                 </td>
-
                             </tr>
                           @endforeach()
                         </tbody>
