@@ -71,3 +71,4 @@ Route::post('check-out',['as'=>'checkout','uses'=>'WelcomeController@postcheckou
 Route::get('pro-file',['as'=>'profile','uses'=>'WelcomeController@profile']);
 Route::post('pro-file',['as'=>'profile','uses'=>'WelcomeController@postprofile']);
 Route::get('tim-kiem',['as'=>'timkiem','uses'=>'WelcomeController@search']);
+Route::post('them-review',['as'=>'review','uses'=>'WelcomeController@addReview']);
