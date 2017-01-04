@@ -29,7 +29,7 @@ class ProductController extends Controller {
       $product->price=$product_request->txtPrice;
       $product->intro=$product_request->txtIntro;
       $product->content=$product_request->txtContent;
-      $product->image=  $file_name;
+      $product->image=$file_name;
       $product->keywords=$product_request->txtKeywords;
       $product->description=$product_request->txtDescription;
       $product->user_id=Auth::user()->id;

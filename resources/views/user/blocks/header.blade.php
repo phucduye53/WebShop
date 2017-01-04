@@ -24,8 +24,12 @@
                 </li>
                 <li><a class="register" href="{{ url('dang-ki') }}">Đăng ký mới</a>
                 </li>
-                @endif
-                <li><a class="shoppingcart" href="{{ url('gio-hang') }}">Giỏ hàng</a>
+                @endif'
+                <?php $totalqty = 0 ?>
+                <?php foreach(Cart::content() as $row) :?>
+                <?php $totalqty=$totalqty + $row->qty ?>
+                <?php endforeach;?>
+                <li><a class="shoppingcart" href="{{ url('gio-hang') }}">Giỏ hàng (<?php echo $totalqty; ?>)</a>
                 </li>
                 <li><a class="checkout" href="{{ url('check-out') }}">Thanh toán</a>
                 </li>

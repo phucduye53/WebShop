@@ -70,7 +70,7 @@ class WelcomeController extends Controller {
 		$product_buy =DB::table('products')->where('id',$id)->first();
 		Cart::add(array('id'=>$id,'name'=>$product_buy->name,'qty'=>1,'price'=>$product_buy->price,'options'=>array('img'=>$product_buy->image)));
 		$content=Cart::content();
-		return redirect()->route('giohang');
+		return redirect()->back()->with(['flash_level'=>'danger','flash_message'=>'Thêm thành công sản phẩm vào giỏ hàng']);
 	}
 	public function giohang(){
 		$content=Cart::content();
