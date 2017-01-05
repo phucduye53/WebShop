@@ -92,7 +92,7 @@ class ProductController extends Controller {
 		$product->save();
 
 		if(!empty(Request::file('fEditDetail'))){
-			foreach(Request::file('fEditDetail')as $file  ){
+			foreach(Request::file('fEditDetail')as $file){
 				$product_img = new ProductImages();
 				if(isset($file)){
 					$product_img->image=$file->getClientOriginalName();
@@ -108,7 +108,7 @@ class ProductController extends Controller {
 	public function getDelImg($id){
 		if(Request::ajax()){
 			$idHinh=(int)Request::get('idHinh');
-			$image=ProductImages::find($idHinh);
+			$image_detail=ProductImages::find($idHinh);
 			if(!empty($image_detail)){
 				$img='resources/upload/detail/'.$image_detail->image;
 				if(File::exists($img)){
@@ -116,7 +116,7 @@ class ProductController extends Controller {
 				}
 				$image_detail->delete();
 			}
-			return "Oke";
+			echo "Oke";
 		}
 	}
 
