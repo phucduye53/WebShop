@@ -28,7 +28,7 @@ $(document).ready(function(){
     var rid=$(this).parent().find("img").attr("id");
     $.ajax({
       url:url+idHinh,
-      type:'get',
+      type:'GET',
       cache:false,
       data:{"_token":_token,"idHinh":idHinh,"urlHinh":img},
       success:function(data){
