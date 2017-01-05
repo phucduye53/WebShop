@@ -34,7 +34,7 @@
                     <ul class="bestseller">
                       @foreach($lasted_product as $item_lasted_product)
                       <li>
-                        <img width="50" height="50" src="{!! asset('resources/upload/'.$item_lasted_product->image) !!}" alt="product" title="product">
+                        <img width="30" height="30" src="{!! asset('resources/upload/'.$item_lasted_product->image) !!}" alt="product" title="product">
                         <a class="productname" href="{!! url('chi-tiet-san-pham',[$item_lasted_product->id,$item_lasted_product->alias]) !!}">{!! $item_lasted_product->name !!}</a>
                         <span class="price">{!! $item_lasted_product->price !!}</span>
                       </li>
@@ -59,7 +59,7 @@
                               <a class="prdocutname" href="product.html">{!! $item_product_cate->name !!}</a>
                               <div class="thumbnail">
                                 <span class="sale tooltip-test">Sale</span>
-                                <a href="{!! url('chi-tiet-san-pham',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img alt="" src="{!! asset('resources/upload/'.$item_product_cate->image) !!}"></a>
+                                <a href="{!! url('chi-tiet-san-pham',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img width="300" height="300" alt="" src="{!! asset('resources/upload/'.$item_product_cate->image) !!}"></a>
                                 <div class="pricetag">
                                   <span class="spiral"></span><a href="{!! url('mua-hang',[$item_product_cate->id,$item_product_cate->alias]) !!}" class="productcart">Thêm vào giỏ hàng</a>
                                   <div class="price">

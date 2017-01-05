@@ -163,9 +163,9 @@
           <a class="prdocutname" href="product.html">{!! $item_product_cate->name !!}</a>
           <div class="thumbnail">
             <span class="sale tooltip-test">Sale</span>
-            <a href=href="{!! url('mua-hang',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img alt="" src="img/product1.jpg"></a>
+            <a href="{!! url('mua-hang',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img alt="" src="{!! asset('resources/upload/'.$item_product_cate->image) !!}"></a>
             <div class="pricetag">
-              <span class="spiral"></span><a href="{!! asset('resources/upload/'.$item_product_cate->image) !!}" class="productcart">ADD TO CART</a>
+              <span class="spiral"></span><a href="{!! url('mua-hang',[$item_product_cate->id,$item_product_cate->alias]) !!}" class="productcart">ADD TO CART</a>
               <div class="price">
                 <div class="pricenew">{!! $item_product_cate->price !!}</div>
                 <div class="priceold"></div>

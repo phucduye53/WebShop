@@ -30,7 +30,7 @@
                               <a class="prdocutname" href="product.html">{!! $item_product_cate->name !!}</a>
                               <div class="thumbnail">
                                 <span class="sale tooltip-test">Sale</span>
-                                <a href="{!! url('chi-tiet-san-pham',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img alt="" src="{!! asset('resources/upload/'.$item_product_cate->image) !!}"></a>
+                                <a href="{!! url('chi-tiet-san-pham',[$item_product_cate->id,$item_product_cate->alias]) !!}"><img width="300" height="300" alt="" src="{!! asset('resources/upload/'.$item_product_cate->image) !!}"></a>
                                 <div class="pricetag">
                                   <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
                                   <div class="price">
