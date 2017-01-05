@@ -33,7 +33,7 @@ class ProductController extends Controller {
       $product->keywords=$product_request->txtKeywords;
       $product->description=$product_request->txtDescription;
       $product->user_id=Auth::user()->id;
-      $product->cate_id=$product_request->parent;
+      $product->cate_id=$product_request->subcate;
       $product_request->file('fImages')->move('resources/upload',$file_name);
       $product->save();
 			$product_id=$product->id;
@@ -62,7 +62,7 @@ class ProductController extends Controller {
 	}
 
 	public function getEdit($id){
-		$cate=Cate::select('id','name','parent_ind')->get()->toArray();
+		$cate=Cate::where('parent_ind', 0)->get();
 		$product =Product::find($id);
 		$product_image=Product::find($id)->pimage;
 		return view('admin.product.edit',compact('cate','product','product_image'));
@@ -70,14 +70,14 @@ class ProductController extends Controller {
 	public function postEdit($id,Request $request){
 		$product =Product::find($id);
 		$product->name=Request::input('txtName');
-		$product->alias=changeTitle(Request::input('parent'));
+		$product->alias=changeTitle(Request::input('subcate'));
 		$product->price=Request::input('txtPrice');
 		$product->intro=Request::input('txtIntro');
 		$product->content=Request::input('txtContent');
 		$product->keywords=Request::input('txtKeywords');
 		$product->description=Request::input('txtDescription');
 		$product->user_id=Auth::user()->id;
-		$product->cate_id=Request::input('parent');
+		$product->cate_id=Request::input('subcate');
 		$img_current ='resources/upload/'.Request::input('img_current');
 		if(!empty(Request::file('fImages'))){
 			$file_name=Request::file('fImages')->getClientOriginalName();
