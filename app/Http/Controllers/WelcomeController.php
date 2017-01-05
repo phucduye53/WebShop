@@ -48,7 +48,7 @@ class WelcomeController extends Controller {
 		return view('user.pages.home',compact('product'));
 	}
 	public function loaisanpham($id){
-		$product_cate=DB::table('products')->select('id','name','image','price','alias','cate_id')->where('cate_id',$id)->paginate(6);
+		$product_cate=DB::table('products')->select('id','name','image','price','alias','cate_id')->where('cate_id',$id)->paginate(2);
 		$cate=DB::table('cates')->select('parent_ind')->where('id',$product_cate[0]->cate_id)->first();
 		$menu_cate =DB::table('cates')->select('id','name','alias')->where('parent_ind',$cate->parent_ind)->get();
 		$lasted_product=DB::table('products')->select('id','name','image','price','alias')->orderBy('id','DESC')->take(3)->get();
@@ -110,14 +110,13 @@ class WelcomeController extends Controller {
 					'txtRePass.same'=>'Mật khẩu nhập lại không đúng',
 					'txtEmail.required'=>'Chưa nhập Email',
 					'txtEmail.regex'=>'Email nhập chưa đúng']);
-		$user=new User([
-			'username'=>$request->input('txtUser'),
-			'password'=>hash::make($request->input('txtPass')),
-			'email'=>$request->input('txtEmail'),
-			'level'=>2,
-			'remember_token'=>$request->input('_token')
-		]);
-		$user->save();
+					$user=new User();
+		      $user->username=$request->txtUser;
+		      $user->password=Hash::make($request->txtPass);
+		      $user->Email=$request->txtEmail;
+		      $user->level=2;
+		      $user->remember_token=$request->_token;
+		      $user->save();
 		return redirect()->route('index');
 	}
 	public function profile(){
