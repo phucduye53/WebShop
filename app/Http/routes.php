@@ -38,18 +38,13 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 			Route::post('edit/{id}',['as'=>'admin.product.postEdit','uses'=>'ProductController@postEdit']);
 			Route::get('delimg/{id}',['as'=>'admin.product.getDelImg','uses'=>'ProductController@getDelImg']);
 
-			Route::group(['prefix'=>'ajax'], function(){
-				Route::get('subcate/{idp}', 'Ajaxcontroller@getsubcate');
-
-
-					Route::get('okbayby', function(){
-						$parent_id = Input::get('parent_id');
-
-						$subcate = App\Cate::where('parent_ind','=', parent_id)->get();
-
-						return Response::json($subcate);
-					});
+			Route::group(['prefix'=>'edit/ajax'], function(){
+				Route::get('subcate/{idp}',['as'=>'subcate', 'uses'=>'Ajaxcontroller@getsubcate']);
 				});
+
+				Route::group(['prefix'=>'ajax'], function(){
+					Route::get('subcate/{idp}',['as'=>'subcate', 'uses'=>'Ajaxcontroller@getsubcate']);
+					});
 		});
 		Route::group(['prefix'=>'user'],function(){
 			Route::post('add',['as'=>'admin.user.postAdd','uses'=>'UserController@postAdd']);
