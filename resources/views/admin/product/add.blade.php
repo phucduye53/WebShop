@@ -30,10 +30,15 @@
                         <form action="{!! url('/admin/product/add') !!}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                                 <div class="form-group">
-                            <label>Mặt hàng thuộc về</label>
-                          <select class="form-control" name="sltParent">
-                              <option value="">Chọn mặt hàng</option>
-                              <?php cate_parent($cate,0,"--",old('sltParent')) ?>  ?>
+                            <label>Loại hàng hóa</label>
+                          <select class="form-control" name="parent" id="parent">
+                                @foreach($cate as $val)
+                                    <option value="{{$val->id}}">{{$val->name}}</option>
+                                @endforeach
+                          </select>
+                          <label>Loại mặt hàng</label>
+                          <select class="form-control" name="subcate" id="subcate">
+
                           </select>
                             </div>
                             <div class="form-group">
@@ -85,3 +90,17 @@
         </div>
 @endsection
         <!-- /#page-wrapper -->
+
+@section('script')
+  <script>
+  $(document).ready(function(){
+  $("#parent").change(function(){
+
+    var id = $(this).val();
+    $.get("ajax/subcate/"+id, function(data){
+      $("#subcate").html(data);
+    });
+  });
+});
+  </script>
+@endsection
