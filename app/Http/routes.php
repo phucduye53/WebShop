@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', ['as'=>'index','uses'=>'WelcomeController@index']);
 
 Route::get('home', 'HomeController@index');
@@ -19,8 +18,6 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 		Route::group(['prefix'=>'cate'],function(){
@@ -40,6 +37,19 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 			Route::get('edit/{id}',['as'=>'admin.product.getEdit','uses'=>'ProductController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.product.postEdit','uses'=>'ProductController@postEdit']);
 			Route::get('delimg/{id}',['as'=>'admin.product.getDelImg','uses'=>'ProductController@getDelImg']);
+
+			Route::group(['prefix'=>'ajax'], function(){
+				Route::get('subcate/{idp}', 'Ajaxcontroller@getsubcate');
+
+
+					Route::get('okbayby', function(){
+						$parent_id = Input::get('parent_id');
+
+						$subcate = App\Cate::where('parent_ind','=', parent_id)->get();
+
+						return Response::json($subcate);
+					});
+				});
 		});
 		Route::group(['prefix'=>'user'],function(){
 			Route::post('add',['as'=>'admin.user.postAdd','uses'=>'UserController@postAdd']);
@@ -71,4 +81,3 @@ Route::post('check-out',['as'=>'checkout','uses'=>'WelcomeController@postcheckou
 Route::get('pro-file',['as'=>'profile','uses'=>'WelcomeController@profile']);
 Route::post('pro-file',['as'=>'profile','uses'=>'WelcomeController@postprofile']);
 Route::get('tim-kiem',['as'=>'timkiem','uses'=>'WelcomeController@search']);
-Route::post('them-review',['as'=>'review','uses'=>'WelcomeController@addReview']);
