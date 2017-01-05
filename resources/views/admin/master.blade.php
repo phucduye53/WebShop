@@ -163,6 +163,8 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script type="text/javascript" src="{{ url('public/admin/js/myscript.js') }}"></script>
 
+    @yield('script')
+
 </body>
 
 </html>
