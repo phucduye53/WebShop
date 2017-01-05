@@ -21,11 +21,20 @@
                           @include('admin.blocks.error')
                           <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                               <div class="form-group">
-                          <label>Mặt hàng thuộc về</label>
-                        <select class="form-control" name="sltParent">
-                            <option value="">Hãy chọn mặt hàng</option>
-                            <?php cate_parent($cate,0,"--",$product["cate_id"]) ?>  ?>
-                        </select>
+
+
+                                <label>Loại hàng hóa</label>
+                              <select class="form-control" name="parent" id="parent">
+                                    @foreach($cate as $val)
+                                        <option value="{{$val->id}}">{{$val->name}}</option>
+                                    @endforeach
+                              </select>
+                              <label>Loại mặt hàng</label>
+                              <select class="form-control" name="subcate" id="subcate">
+
+                              </select>
+
+
                           </div>
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
@@ -85,3 +94,17 @@
         </div>
         <!-- /#page-wrapper -->
 @endsection()
+
+@section('script')
+  <script>
+  $(document).ready(function(){
+  $("#parent").change(function(){
+
+    var id = $(this).val();
+    $.get("ajax/subcate/"+id, function(data){
+      $("#subcate").html(data);
+    });
+  });
+});
+  </script>
+@endsection

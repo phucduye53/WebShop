@@ -63,7 +63,8 @@ class CateController extends Controller {
 	$cate->keywords=$request->txtKeyword;
 	$cate->description=$request->txtDescription;
 	$cate->save();
-	  return redirect()->route('admin.cate.list')->with(['flash_message'=>'Sửa thành công']);
+	  //return redirect()->route('admin.cate.list')->with(['flash_message'=>'Sửa thành công']);
+		return redirect('admin/cate/edit/'.$id)->with(['flash_message'=>'Sửa thành công']);
 	}
 
 }
