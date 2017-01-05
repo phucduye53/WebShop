@@ -22,14 +22,14 @@ class ProductRequest extends Request {
 	public function rules()
 	{
 		return [
-			'sltParent'=>'required',
+			'parent'=>'required',
 			'txtName'=>'required|unique:products,name',
 			'fImages'=>'required|image'
 		];
 	}
 	public function messages(){
 		return[
-			'sltParent.required'=>'Chưa chọn loại hàng hóa',
+			'parent.required'=>'Chưa chọn loại hàng hóa',
 			'txtName.required'=>'Chưa có tên cho sản phẩm',
 			'txtname.unique'=>'Đã tồn tại tên sản phẩm này',
 			'fImages.required'=>'Hãy chọn hình ảnh cho sản phẩm',
